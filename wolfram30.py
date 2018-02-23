@@ -5,7 +5,7 @@ import sys
 bufferInput = [False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, True, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False]
 bufferOutput = [False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False]
 
-def foo(bar): 
+def printBoolArray(bar): 
 	for x in bar:
 		if (x):
 			sys.stdout.write('#')
@@ -13,7 +13,7 @@ def foo(bar):
 			sys.stdout.write(' ')
 	print
 
-foo(bufferInput)
+printBoolArray(bufferInput)
 for line in xrange (0, 500):
 	for index in xrange(0, len(bufferInput)):
 
@@ -41,6 +41,6 @@ for line in xrange (0, 500):
 			result=True
 		#print "left:", left, "  center:", center, "  right:", right, "    => ", result
 		bufferOutput[index] = result		
-	foo(bufferOutput)
+	printBoolArray(bufferOutput)
 	bufferInput = copy.copy(bufferOutput)
 
