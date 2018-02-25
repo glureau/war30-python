@@ -4,12 +4,11 @@ import copy
 import libWolfram30
 import libBinary
 
-msg = raw_input("Message a decrypter : ")
+msg = raw_input("Message a decrypter (0/1) : ")
 code = raw_input("Clé d'encryption : ")
 
 binaryMsg = msg
 binaryCode = libBinary.textToBits(code) # 10010101
-print "Message:", binaryMsg
 
 inputLength = len(binaryCode)
 
@@ -25,7 +24,7 @@ xorKeyIndex = 0
 for line in xrange (0, binaryMsgLength):
 	for index in xrange(0, len(bufferInput)):
 		bufferOutput[index] = libWolfram30.computeNext(bufferInput, index)
-		if (index == (binaryMsgLength / 2)):
+		if (index == (len(bufferInput) / 2)):
 			xorKey[xorKeyIndex] = bufferOutput[index]
 	xorKeyIndex += 1
 	#libWolfram30.printBoolArray(bufferOutput)

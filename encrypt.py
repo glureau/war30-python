@@ -26,7 +26,7 @@ xorKeyIndex = 0
 for line in xrange (0, binaryMsgLength):
 	for index in xrange(0, len(bufferInput)):
 		bufferOutput[index] = libWolfram30.computeNext(bufferInput, index)
-		if (index == (binaryMsgLength / 2)):
+		if (index == (len(bufferInput) / 2)):
 			xorKey[xorKeyIndex] = bufferOutput[index]
 	xorKeyIndex += 1
 	#libWolfram30.printBoolArray(bufferOutput)
@@ -49,6 +49,5 @@ print "Result :",
 libWolfram30.printBoolArray(xorResult)
 
 xorResultStr=libWolfram30.toBinaryString(xorResult)
-print "0/1 :", xorResultStr
+print "Binary:", xorResultStr
 print "Ascii (do not copy):", libBinary.bitsToTextNoEncode(xorResultStr)
-
