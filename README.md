@@ -60,3 +60,14 @@ This script will create a PGM image of the rule 30 computed from a single bit. C
 You can use ToyViewer (on MAC) or IrfanView (on Windows) to see the computed image (and export it in another format).
 ![Generated image](art/rule30_triangle_1000.png)
 
+### Binarize text (tool)
+
+    Message a binariser : abcde
+    a = 01100001
+    b = 01100010
+    c = 01100011
+    d = 01100100
+    e = 01100101
+    message with spaces: 01100001 01100010 01100011 01100100 01100101
+    message: 0110000101100010011000110110010001100101
+
