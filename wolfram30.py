@@ -1,46 +1,50 @@
-#!/usr/bin/python
-import copy
+# encoding: utf-8
 import sys
 
-bufferInput = [False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, True, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False]
-bufferOutput = [False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False]
-
-def printBoolArray(bar): 
-	for x in bar:
+def printBoolArray(boolArray): 
+	for x in boolArray:
 		if (x):
-			sys.stdout.write('#')
+			sys.stdout.write('█')
 		else:
 			sys.stdout.write(' ')
 	print
 
-printBoolArray(bufferInput)
-for line in xrange (0, 500):
-	for index in xrange(0, len(bufferInput)):
-
-		if (index == 0):
-			left=bufferInput[len(bufferInput)- 1]
+def writeInP2File(file, boolArray): 
+	for x in boolArray:
+		if (x):
+			file.write('1 ',)
 		else:
-			left=bufferInput[index-1]
+			file.write('0 ',)
+	file.write('\n')
 
-		center=bufferInput[index]
+def pickLeftInCyclicBuffer(array, index):
+	if (index == 0):
+		return array[len(array)- 1]
+	else:
+		return array[index-1]
 
-		if (index == len(bufferInput) - 1):
-			right=bufferInput[0]
-		else:
-			right=bufferInput[index+1]
+def pickRightInCyclicBuffer(array, index):
+	if (index == len(array) - 1):
+		return array[0]
+	else:
+		return array[index+1]
+
+def rule30(left, center, right):
+	result=False
+	if ((not left) and (not center) and right):
+		result=True
+	if ((not left) and center and (not right)):
+		result=True
+	if (left and (not center) and (not right)):
+		result=True
+	if ((not left) and center and right):
+		result=True
+	return result
 
 
-		result=False
-		if ((not left) and (not center) and right):
-			result=True
-		if ((not left) and center and (not right)):
-			result=True
-		if (left and (not center) and (not right)):
-			result=True
-		if ((not left) and center and right):
-			result=True
-		#print "left:", left, "  center:", center, "  right:", right, "    => ", result
-		bufferOutput[index] = result		
-	printBoolArray(bufferOutput)
-	bufferInput = copy.copy(bufferOutput)
+def computeNext(array, index):
+	left=pickLeftInCyclicBuffer(array, index)
+	center=array[index]
+	right=pickRightInCyclicBuffer(array, index)
+	return rule30(left, center, right)		
 
