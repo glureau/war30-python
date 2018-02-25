@@ -1,12 +1,20 @@
 #!/usr/bin/python
+# encoding: utf-8
 import copy
 import libWolfram30
 
-count = int(input("Taille du triangle : "))
+baseTriangle = raw_input("Base du triangle : ")
+count = int(input("Nombre d'itérations : "))
 
-bufferInput = [False] * (2 * count + 1)
-bufferInput[count] = True
-bufferOutput = [False] * (2 * count + 1)
+inputLength = len(baseTriangle)
+
+bufferInput = [False] * (2 * count + inputLength)
+index = count
+for c in baseTriangle:
+	if (c=="1"):
+		bufferInput[index] = True
+	index+=1
+bufferOutput = [False] * (2 * count + inputLength)
 
 libWolfram30.printBoolArray(bufferInput)
 for line in xrange (0, count):
