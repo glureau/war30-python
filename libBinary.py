@@ -9,6 +9,10 @@ def bitsToText(bits, encoding='utf-8', errors='surrogatepass'):
     n = int(bits, 2)
     return int2bytes(n).decode(encoding, errors)
 
+def bitsToTextNoEncode(bits):
+    n = int(bits, 2)
+    return int2bytes(n)
+
 def int2bytes(i):
     hex_string = '%x' % i
     n = len(hex_string)

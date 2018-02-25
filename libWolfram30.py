@@ -41,10 +41,26 @@ def rule30(left, center, right):
 		result=True
 	return result
 
-
 def computeNext(array, index):
 	left=pickLeftInCyclicBuffer(array, index)
 	center=array[index]
 	right=pickRightInCyclicBuffer(array, index)
 	return rule30(left, center, right)		
 
+def toBoolArray(src):
+	dest = [False] * len(src)
+	index = 0
+	for c in src:
+		if (c == "1"):
+			dest[index] = True
+		index+=1
+	return dest
+
+def toBinaryString(src):
+	dest = ""
+	for c in src:
+		if (c):
+			dest += "1"
+		else:
+			dest += "0"
+	return dest
